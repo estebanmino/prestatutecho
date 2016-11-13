@@ -1,0 +1,116 @@
+<p id="notice"><%= notice %></p>
+
+<section id="services" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h1>Proyectos Solares</h1>
+                <hr class="small">
+                <div class="row">
+                  <div>
+                    <div style="width:1000px;float:left;display:inline-block;">
+                      <h2>Aquí se encuentran todos los proyectos en los que puedes participar.</h2>
+                    </div>
+                  </div>
+
+                </div><!-- /.row (nested) -->
+        </div>
+          <!-- /.row -->
+  </div>
+    <!-- /.container -->
+</section>
+
+<br>
+<div class = "wrapperbutton">
+  <%= link_to 'Crear un nuevo grupo', new_group_path, class:"btn btn-primary", style:'color:white'%> <%= link_to 'Ver mis proyectos', new_group_path, class:"btn btn-primary", style:'color:white'%>
+</div>
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-61 col-md-6">
+      <% @groups.each do |group| %>
+
+      <div class="row-fluid">
+        <div class="thumbnail">
+          <img src="techoescritosun.jpg" alt="Imagen Grupo">
+          <div class="caption">
+          <% if group.host_id == current_user.id %>
+            <strong><%= group.name %></strong><br>
+            <%= User.find_by_id(group.host_id).name %> <%= User.find_by_id(group.host_id).last_name %> <br>
+            <a># Integrantes: <%= group.users.count %></a>
+            <p><a <%= link_to 'Eliminar', group, method: :delete, data: { confirm: 'Are you sure?' } %></a> <a <%= link_to 'Editar', edit_group_path(group) %></a></p>
+
+          <% else %>
+            <strong><%= group.name %></strong><br>
+            <a># Integrantes: <%= group.users.count %></a>
+          <% end %>
+
+
+
+            </div>
+          </div>
+          <br>
+        </div>
+      <% end %>
+  </div>
+    <div class="col-xs-6 col-md-6 col-lg-6 text-center">
+
+        <div class="view">
+          <div style='width: ;heigh: 90%'>
+            <div id="map" style='100%width: 100%; height: 800px;'></div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: { mapTypeId: google.maps.MapTypeId.ROAD},
+                                 internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+
+</script>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>Presta Tu Techo</strong>
+                </h4>
+                <p>Santiago de Chile</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                    <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">prestatutecho@gmail.com</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="list-inline">
+                    <li>
+                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; PrestaTuTecho 2016</p>
+            </div>
+        </div>
+    </div>
+    <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+</footer>

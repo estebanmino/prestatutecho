@@ -1,0 +1,58 @@
+<div class="row">
+  <%= form_for(group) do |f| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="grupo.jpg" alt="Imagen Grupo">
+        <div class="caption">
+          <% if group.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+              <ul>
+              <% group.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <a>Nombre</a>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+
+          <div class="field">
+
+              <a>Calle</a>
+
+            <%= f.label :street %>
+            <%= f.text_field :street %>
+          </div>
+
+          <div class="field">
+
+              <a>Número</a>
+
+            <%= f.label :number %>
+            <%= f.text_field :number %>
+          </div>
+
+          <div class="field">
+
+            <a>Comuna</a>
+
+            <%= f.label :commune %>
+            <%= f.text_field :commune %>
+          </div>
+
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  <% end %>
+</div>
