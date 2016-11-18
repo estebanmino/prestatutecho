@@ -35,17 +35,19 @@
 
       <div class="row-fluid">
         <div class="thumbnail">
-          <img src="techoescritosun.jpg" alt="Imagen Grupo">
+
+          <img src="url(<%= asset_path 'Solar-Panels.jpg'%>);" alt="Imagen Grupo">
           <div class="caption">
           <% if group.host_id == current_user.id %>
             <strong><%= group.name %></strong><br>
             <%= User.find_by_id(group.host_id).name %> <%= User.find_by_id(group.host_id).last_name %> <br>
             <a># Integrantes: <%= group.users.count %></a>
-            <p><a <%= link_to 'Eliminar', group, method: :delete, data: { confirm: 'Are you sure?' } %></a> <a <%= link_to 'Editar', edit_group_path(group) %></a></p>
+            <p><a <%= link_to 'Eliminar', group,:class=>"btn btn-danger btn-xs", :style=>'color:white', method: :delete, data: { confirm: '¿Estás seguro que desesas eliminar el grupo?' } %></a> <a <%= link_to 'Editar', edit_group_path(group),:class=>"btn btn-primary btn-xs", :style=>'color:white' %></a></p>
 
           <% else %>
             <strong><%= group.name %></strong><br>
             <a># Integrantes: <%= group.users.count %></a>
+            <p><a <%= link_to 'Ver Grupo', group_path(group),:class=>"btn btn-primary btn-xs", :style=>'color:white' %></a></p>
           <% end %>
 
 
