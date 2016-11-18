@@ -5,25 +5,42 @@
 <div class="row">
   <div class="col-xs-6 col-md-6 col-lg-6">
 
-    <h2>
-      <strong>Grupo:</strong>
-      <%= @group.name %>
-    </h2>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Grupo: </strong><%= @group.name%></h3>
+      </div>
+      <div class="panel-body">
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td> Miembros: <%= @group.users.count %></td>
+                  <td> Ubicación: <%= @group.address %></td>
 
-    <h3> Miembros: <%= @group.users.count %></h3>
-    <h3> Ubicación: <%= @group.address %></h3>
+                  <td> Tiempo de Recuperación: <%= @group.recovery_time %> meses</h3></td>
+                  <td> Inversión Total: <%= number_to_currency_ch(@group.total_investment) %></h3></td>
+                  <td> Inversión Mínima: <%= number_to_currency_ch(@group.minimal_investment) %></h3></td>
 
-    <h3> Tiempo de Recuperación: <%= @group.recovery_time %> meses</h3>
-    <h3> Inversión Total: <%= number_to_currency_ch(@group.total_investment) %></h3>
-    <h3> Inversión Mínima: <%= number_to_currency_ch(@group.minimal_investment) %></h3>
+                </tr>
 
-    <%= link_to 'Unirse!', join_group_path(@group) %>
 
-    <% if @group.host_id == current_user.id %>
-    <%= link_to 'Edit', edit_group_path(@group) %> |
-    <% end %>
-    <%= link_to 'Back', groups_path %>
 
+              </tbody>
+            </table>
+
+
+            <% if @group.host_id != current_user.id %>
+            <%= link_to 'Unirse!', join_group_path(@group) %>
+            <% end %>
+            <% if @group.host_id == current_user.id %>
+            <%= link_to 'Editar', edit_group_path(@group) %> |
+            <% end %>
+            <%= link_to 'Atrás', groups_path%>
+          </div>
+        </div>
+    
+
+    </div>
   </div>
 
   <div class="col-xs-6 col-md-6 col-lg-6 text-center">
@@ -33,6 +50,7 @@
       <div id="map" style='width: 800px; height: 400px;'></div>
     </div>
   </div>
+
 
 
 
