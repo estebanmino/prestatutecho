@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-principal navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/ptt">Presta tu Techo</a>
@@ -10,19 +10,23 @@
 
       </button>
     </div>
-      <div class="collapse navbar-collapse navbar-menu navbar-right" id="navbar-collapse-1">
+      <div class="collapse navbar-collapse navbar-menu" id="navbar-collapse-1">
         <% if !current_user %>
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-left">
             <li><a href="/home">Inicio</a></li>
             <li><a href="/about">Nosotros</a></li>
             <li><a href="/contact">Contáctanos</a></li>
             <li><a href="/works">¿Cómo funciona?</a></li>
           </ul>
+
+
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/sign_in">Inicia Sesión</a></li>
             <li><a href="/sign_up">Registrarse</a></li>
           </ul>
+      </div>
         <% else %>
+        <div class="collapse navbar-collapse navbar-menu" id="navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="/groups">Grupos</a></li>
             <li><a href="/prestatutecho">Presta tu Techo</a></li>
@@ -32,6 +36,7 @@
             <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
           </ul>
         <% end %>
+        </div>
       </div>
   </div>
 </nav>
