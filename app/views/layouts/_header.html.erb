@@ -1,28 +1,37 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/ptt">Presta tu Techo</a>
+      <button class="navbar-toggle pull-left" data-toggle="collapse" data-target="#navbar-collapse-1" >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" ></span>
+        <span class="icon-bar" ></span>
+        <span class="icon-bar" ></span>
+
+      </button>
     </div>
-    <% if !current_user %>
-      <ul class="nav navbar-nav">
-        <li><a href="/home">Inicio</a></li>
-        <li><a href="/about">Nosotros</a></li>
-        <li><a href="/contact">Contáctanos</a></li>
-        <li><a href="/works">¿Cómo funciona?</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/sign_in">Inicia Sesión</a></li>
-        <li><a href="/sign_up">Registrarse</a></li>
-      </ul>
-    <% else %>
-      <ul class="nav navbar-nav">
-        <li><a href="/groups">Grupos</a></li>
-        <li><a href="/prestatutecho">Presta tu Techo</a></li>
-        <li><a href="/contact">Mi cuenta</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
-      </ul>
-    <% end %>
+      <div class="collapse navbar-collapse navbar-menu navbar-right" id="navbar-collapse-1">
+        <% if !current_user %>
+          <ul class="nav navbar-nav">
+            <li><a href="/home">Inicio</a></li>
+            <li><a href="/about">Nosotros</a></li>
+            <li><a href="/contact">Contáctanos</a></li>
+            <li><a href="/works">¿Cómo funciona?</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/sign_in">Inicia Sesión</a></li>
+            <li><a href="/sign_up">Registrarse</a></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav">
+            <li><a href="/groups">Grupos</a></li>
+            <li><a href="/prestatutecho">Presta tu Techo</a></li>
+            <li><a href="/contact">Mi cuenta</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to('Salir', destroy_user_session_path, :method => :delete) %></li>
+          </ul>
+        <% end %>
+      </div>
   </div>
 </nav>
